@@ -103,17 +103,57 @@ export class Currency {
     constructor(baseCurrency) {
         this.baseCurrency = baseCurrency;
     }
-    convert(amountToConvert, destinationCurrency) {
-        fetch(`https://api.currencyapi.com/v3/latest?apikey=yKiW7APVWuQjXeXH3m2TTFLn8dtk0LbsvXBvSOmv&base_currency=${this.baseCurrency}`)
-        .then(res => res.json())
-        .then(json => {
-            const destionationCurrencyData = json.data[destinationCurrency];
-            const finalResult = amountToConvert * destionationCurrencyData.value;
-            return finalResult;
-        });
+    async convert(amountToConvert, destinationCurrency) {
+        const response = await fetch(`https://api.currencyapi.com/v3/latest?apikey=yKiW7APVWuQjXeXH3m2TTFLn8dtk0LbsvXBvSOmv&base_currency=${this.baseCurrency}`);
+        const json = await response.json();
+        const currenciesData = json.data;
+        const finalResult = currenciesData[destinationCurrency].value * amountToConvert;
+        return `${amountToConvert}${this.baseCurrency} is equal to ${finalResult}${destinationCurrency}`;
     }
 }
 
-let currencyDKK = new Currency('DKK');
-let conversionDKK_USD = currencyDKK.convert(100, 'USD');
-console.log(conversionDKK_USD);
+/* let currencyDKK = new Currency('HRK');
+console.log(await currencyDKK.convert(754, 'EUR')); */ // HAS TO USE AWAIT BECAUSE THE FETCH API FUNCTION IS AN ASYNC FUNCTION 
+
+export class Grade {
+    convert(gradeToConvert, gradeSystem) {
+        let convertedGrade;
+        switch (gradeSystem) {
+            case 'DK':
+                if (gradeToConvert == 12) {
+                    convertedGrade = 'A+';
+                } else if (gradeToConvert == 10) {
+                    convertedGrade = 'A';
+                } if (gradeToConvert == 7) {
+                    convertedGrade = 'B';
+                } else if (gradeToConvert == 4) {
+                    convertedGrade = 'C';
+                } else if (gradeToConvert == 2) {
+                    convertedGrade = 'D';
+                } else if (gradeToConvert == 0 || gradeToConvert == -3) {
+                    convertedGrade = 'F';
+                }
+                break;
+
+            case 'USA':
+                if (gradeToConvert == 'A+') {
+                    convertedGrade = 12;
+                } else if (gradeToConvert == 'A') {
+                    convertedGrade = 10;
+                } if (gradeToConvert == 'B') {
+                    convertedGrade = 7;
+                } else if (gradeToConvert == 'C') {
+                    convertedGrade = 4;
+                } else if (gradeToConvert == 'D') {
+                    convertedGrade = 2;
+                } else if (gradeToConvert == 'F') {
+                    convertedGrade = [0, -3];
+                }
+                break;
+        }
+        return `${gradeToConvert} in ${gradeSystem} is equal to ${convertedGrade}`;
+    }
+}
+
+/* let grade1 = new Grade();
+console.log(grade1.convert('F', 'USA')); */
