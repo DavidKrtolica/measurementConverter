@@ -1,4 +1,6 @@
-class Measure {
+import fetch from "node-fetch";
+
+export class Measure {
     constructor(measureValue, measureSystem) {
         this.measureValue = measureValue;
         this.measureSystem = measureSystem;
@@ -22,13 +24,13 @@ class Measure {
     }
 }
 
-class Lenght extends Measure  {
+export class Lenght extends Measure  {
     constructor(measureValue, measureSystem) {
         super(measureValue, measureSystem);
     }
 }
 
-class Weight extends Measure  {
+export class Weight extends Measure  {
     constructor(measureValue, measureSystem) {
         super(measureValue, measureSystem);
     }
@@ -44,7 +46,7 @@ console.log(weight1.convert());
 console.log(weight2.convert()); */
 
 
-class Temperature {
+export class Temperature {
     constructor(tempValue, tempScale) {
         this.tempValue = tempValue;
         this.tempScale = tempScale;
@@ -95,3 +97,23 @@ console.log(temp1.convert('fahrenheit'));
 
 let temp2 = new Temperature(20, 'celsius');
 console.log(temp2.convert('kelvin')); */
+
+
+export class Currency {
+    constructor(baseCurrency) {
+        this.baseCurrency = baseCurrency;
+    }
+    convert(amountToConvert, destinationCurrency) {
+        fetch(`https://api.currencyapi.com/v3/latest?apikey=yKiW7APVWuQjXeXH3m2TTFLn8dtk0LbsvXBvSOmv&base_currency=${this.baseCurrency}`)
+        .then(res => res.json())
+        .then(json => {
+            const destionationCurrencyData = json.data[destinationCurrency];
+            const finalResult = amountToConvert * destionationCurrencyData.value;
+            return finalResult;
+        });
+    }
+}
+
+let currencyDKK = new Currency('DKK');
+let conversionDKK_USD = currencyDKK.convert(100, 'USD');
+console.log(conversionDKK_USD);
