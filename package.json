@@ -1,6 +1,5 @@
 {
   "name": "unittestingexercise",
-  "type": "module",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000m\u0000e\u0000a\u0000s\u0000u\u0000r\u0000e\u0000m\u0000e\u0000n\u0000t\u0000C\u0000o\u0000n\u0000v\u0000e\u0000r\u0000t\u0000e\u0000r\u0000\r\u0000 \u0000",
   "main": "measurementConverter.js",
@@ -8,9 +7,11 @@
     "fetch": "^1.1.0",
     "node-fetch": "^3.2.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
