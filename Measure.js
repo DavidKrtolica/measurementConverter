@@ -1,7 +1,15 @@
 class Measure {
     constructor(measureValue, measureSystem) {
-        this.measureValue = measureValue;
-        this.measureSystem = measureSystem;
+        if (measureValue <= 0) {
+            throw 'Cannot create an object if measure value which is zero or negative!';
+        } else {
+            this.measureValue = measureValue;
+        }
+        if (measureSystem == 'metric' || measureSystem == 'imperial') {
+            this.measureSystem = measureSystem;
+        } else {
+            throw 'Incorrect type of measurement system provided!';
+        }
     }
     convert() {
         if (this.measureSystem == 'imperial' && this.constructor.name == 'Length') {
@@ -17,7 +25,7 @@ class Measure {
             this.measureValue =  this.measureValue * 2.204623;
             return `${this.measureValue.toFixed(2)} lbs`;
         } else {
-            console.log(`INCORRECT MEASUREMENT SYSTEM!\nINITIAL VALUE: ${this.measureValue} IN THE "${this.measureSystem}" SYSTEM`);
+            throw `INCORRECT MEASUREMENT SYSTEM!\nINITIAL VALUE: ${this.measureValue} IN THE "${this.measureSystem}" SYSTEM`;
         }
     }
 }
