@@ -6,4 +6,5 @@ class Weight extends Measure  {
     }
 }
 
+
 module.exports = Weight;

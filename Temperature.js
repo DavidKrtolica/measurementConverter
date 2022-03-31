@@ -50,4 +50,5 @@ class Temperature {
     }
 }
 
+
 module.exports = Temperature;

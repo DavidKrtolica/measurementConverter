@@ -11,6 +11,7 @@ class Measure {
             throw 'Incorrect type of measurement system provided!';
         }
     }
+    
     convert() {
         if (this.measureSystem == 'imperial' && this.constructor.name == 'Length') {
             this.measureValue =  this.measureValue * 2.54;
@@ -29,5 +30,6 @@ class Measure {
         }
     }
 }
+
 
 module.exports = Measure;
