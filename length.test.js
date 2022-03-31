@@ -1,4 +1,4 @@
-const Length = require('./Length.js');
+const Length = require('./length.js');
 
 
 const testMeasureLength = new Length(1, 'imperial');

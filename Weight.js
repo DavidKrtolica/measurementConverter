@@ -1,4 +1,4 @@
-const Measure = require('./Measure.js');
+const Measure = require('./measure.js');
 
 class Weight extends Measure  {
     constructor(measureValue, measureSystem) {

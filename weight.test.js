@@ -1,4 +1,4 @@
-const Weight = require('./Weight.js');
+const Weight = require('./weight.js');
 
 //TESTING THROWN ERRORS FOR WRONG MEASURE VALUE/SYSTEM INITIALIZATION
 test('the weight value cannot be a negative number -- testing throw error', () => {

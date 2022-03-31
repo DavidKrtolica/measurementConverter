@@ -1,8 +1,14 @@
 class Temperature {
     constructor(tempValue, tempScale) {
         this.tempValue = tempValue;
-        this.tempScale = tempScale;
+
+        if (tempScale == 'celsius' || tempScale == 'fahrenheit' || tempScale == 'kelvin') {
+            this.tempScale = tempScale;
+        } else {
+            throw 'Incorrect temperature scale!'
+        }
     }
+    
     convert(scaleDest) {
         switch (this.tempScale) {
             case 'celsius':
@@ -13,7 +19,7 @@ class Temperature {
                     this.tempValue = this.tempValue + 273.15;
                     return `${this.tempValue.toFixed(2)} K`;
                 } else {
-                    console.log(`INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`);
+                    throw `INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`;
                 }
                 break;
 
@@ -25,7 +31,7 @@ class Temperature {
                     this.tempValue = (this.tempValue + 459.67) * (5 / 9);
                     return `${this.tempValue.toFixed(2)} K`;
                 } else {
-                    console.log(`INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`);
+                    throw `INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`;
                 }
                 break;
 
@@ -37,7 +43,7 @@ class Temperature {
                     this.tempValue = this.tempValue  * (9 / 5) - 459.67;
                     return `${this.tempValue.toFixed(2)} °F`;
                 } else {
-                    console.log(`INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`);
+                    throw `INCORRECT TEMPERATURE DESTINATION SCALE! YOU WROTE ${scaleDest} AS DESTINATION SCALE...`;
                 }
                 break;
         }
