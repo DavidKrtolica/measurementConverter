@@ -15,7 +15,7 @@ test('incorrect base currency value to throw error', () => {
 
 /* test('incorrect amount value conversion to throw error', () => {
     expect(() => {
-        const testCurr = new Currency('USD');
-        testCurr.convert(-150, 'EUR');
+        let testCurr = new Currency('USD');
+        let result = await testCurr.convert(-150, 'EUR');
     }).toThrow('Invalid value for amount to convert - must be a positive number higher than 0!');
 }); */
